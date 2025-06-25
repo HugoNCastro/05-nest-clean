@@ -55,3 +55,7 @@ pids
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+/private.key-base64.txt
+/private.key
+/public.key
+/public.key-base64.txt
