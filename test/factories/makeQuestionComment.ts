@@ -4,6 +4,9 @@ import {
   QuestionComment,
   QuestionCommentProps,
 } from '@/domain/forum/enterprise/entities/question-comment'
+import { PrismaQuestionCommentMapper } from '@/infra/database/prisma/mappers/prisma-question-comment-mapper'
+import { PrismaService } from '@/infra/database/prisma/prisma.service'
+import { Injectable } from '@nestjs/common'
 
 export function makeQuestionComment(
   override: Partial<QuestionCommentProps> = {},
@@ -20,4 +23,21 @@ export function makeQuestionComment(
   )
 
   return questioncomment
+}
+
+@Injectable()
+export class QuestionCommentFactory {
+  constructor(private prisma: PrismaService) {}
+
+  async makePrismaQuestion(
+    data: Partial<QuestionCommentProps> = {},
+  ): Promise<QuestionComment> {
+    const questioncomment = makeQuestionComment(data)
+
+    await this.prisma.comment.create({
+      data: PrismaQuestionCommentMapper.toPrisma(questioncomment),
+    })
+
+    return questioncomment
+  }
 }

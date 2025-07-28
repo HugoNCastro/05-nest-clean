@@ -10,12 +10,17 @@ export interface AnswerProps {
   content: string
   attachments: AnswerAttachmentList
   createdAt: Date
-  updatedAt?: Date
+  updatedAt?: Date | null
 }
 
 export class Answer extends AggregateRoot<AnswerProps> {
   get content() {
     return this.props.content
+  }
+
+  set content(content: string) {
+    this.props.content = content
+    this.touch()
   }
 
   get authorId() {
@@ -28,6 +33,11 @@ export class Answer extends AggregateRoot<AnswerProps> {
 
   get attachments() {
     return this.props.attachments
+  }
+
+  set attachments(attachments: AnswerAttachmentList) {
+    this.props.attachments = attachments
+    this.touch()
   }
 
   get createdAt() {
@@ -44,16 +54,6 @@ export class Answer extends AggregateRoot<AnswerProps> {
 
   private touch() {
     this.props.updatedAt = new Date()
-  }
-
-  set content(content: string) {
-    this.props.content = content
-    this.touch()
-  }
-
-  set attachments(attachments: AnswerAttachmentList) {
-    this.props.attachments = attachments
-    this.touch()
   }
 
   static create(
