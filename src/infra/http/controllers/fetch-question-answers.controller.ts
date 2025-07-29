@@ -22,15 +22,15 @@ const queryValidationPipe = new ZodValidationPipe(pageQueryParamSchema)
 type PageQueryParamSchema = z.infer<typeof pageQueryParamSchema>
 
 @Controller('/questions/:questionId/answers')
-export class FecthQuestionAnswersController {
-  constructor(private fecthQuestionAnswers: FetchQuestionAnswersUseCase) {}
+export class FetchQuestionAnswersController {
+  constructor(private fetchQuestionAnswers: FetchQuestionAnswersUseCase) {}
 
   @Get()
   async handle(
     @Query('page', queryValidationPipe) page: PageQueryParamSchema,
     @Param('questionId') questionId: string,
   ) {
-    const result = await this.fecthQuestionAnswers.execute({
+    const result = await this.fetchQuestionAnswers.execute({
       page,
       questionId,
     })
