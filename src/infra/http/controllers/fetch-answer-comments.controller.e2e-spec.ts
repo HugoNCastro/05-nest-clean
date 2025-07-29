@@ -7,7 +7,6 @@ import request from 'supertest'
 import { AnswerFactory } from 'test/factories/makeAnswer'
 import { AnswerCommentFactory } from 'test/factories/makeAnswerComment'
 import { QuestionFactory } from 'test/factories/makeQuestion'
-import { QuestionCommentFactory } from 'test/factories/makeQuestionComment'
 import { StudentFactory } from 'test/factories/makeStudent'
 
 describe('Fetch answer comments (E2E)', () => {
