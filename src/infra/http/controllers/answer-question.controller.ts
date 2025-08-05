@@ -13,6 +13,7 @@ import { AnswerQuestionUseCase } from '@/domain/forum/application/use-cases/answ
 
 const answerquestionBodySchema = z.object({
   content: z.string(),
+  attachments: z.array(z.string().uuid()),
 })
 
 type AnswerquestionBodySchema = z.infer<typeof answerquestionBodySchema>
@@ -28,14 +29,14 @@ export class AnswerQuestionController {
     @CurrentUser() user: UserPayloadSchema,
     @Param('questionId') questionId: string,
   ) {
-    const { content } = body
+    const { content, attachments } = body
     const userId = user.sub
 
     const result = await this.answerquestion.execute({
       content,
       questionId,
       authorId: userId,
-      attachmentsIds: [],
+      attachmentsIds: attachments,
     })
 
     if (result.isLeft()) {
