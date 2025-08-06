@@ -30,7 +30,9 @@ export class OnQuestionBestAnswerChosen implements EventHandler {
       await this.sendNotification.execute({
         recipientId: answer?.authorId.toString(),
         title: `Sua resposta foi escolhida !`,
-        content: `A resposta que você enviou em ${question.title.substring(0, 20).concat('...')} foi escolhida pelo autor !`,
+        content: `A resposta que você enviou em ${question.title
+          .substring(0, 20)
+          .concat('...')} foi escolhida pelo autor !`,
       })
     }
   }
