@@ -35,8 +35,6 @@ export class FecthAnswerCommentsController {
       answerId,
     })
 
-    console.log(result, 'result')
-
     if (result.isLeft()) {
       throw new BadRequestException()
     }

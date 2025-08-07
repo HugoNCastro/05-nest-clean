@@ -1,5 +1,5 @@
 import { Either, left, right } from '@/core/either'
-import { Notification } from '../../enterprise/notification'
+import { Notification } from '../../enterprise/entities/notification'
 import { NotificationsRepository } from '../repositories/notifications-repository'
 import { NotAllowedError } from '@/core/error/errors/not-allowed-error'
 import { ResourceNotFoundError } from '@/core/error/errors/resource-not-found-error'
